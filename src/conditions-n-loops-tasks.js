@@ -442,16 +442,17 @@ function sortByAsc(arr) {
   const n = arr.length;
 
   for (let i = 0; i < n - 1; i += 1) {
-    let swapped = false;
-    for (let j = 0; j < n - 1 - i; j += 1) {
-      if (newArr[j] > newArr[j + 1]) {
-        const temp = newArr[j];
-        newArr[j] = newArr[j + 1];
-        newArr[j + 1] = temp;
-        swapped = true;
+    let minIndex = i;
+    for (let j = i + 1; j < n; j += 1) {
+      if (newArr[j] < newArr[minIndex]) {
+        minIndex = j;
       }
     }
-    if (!swapped) break;
+    if (minIndex !== i) {
+      const temp = newArr[i];
+      newArr[i] = newArr[minIndex];
+      newArr[minIndex] = temp;
+    }
   }
 
   return newArr;
